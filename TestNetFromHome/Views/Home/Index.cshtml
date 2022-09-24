@@ -1,0 +1,59 @@
+﻿@model TestNetFromHome.Models.AuthErrorModel;
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Авторизация";
+}
+<form asp-action="Auth" asp-controller="Home" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+    <div class="row">
+        <div class="col-md-12">
+            
+                <div class="row m-2">
+                    <div class="col-md-2">
+                    <label class="form-label" for="Login">Логин</label>
+                    <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="UserName" required>
+                    </div>
+                </div>
+
+                <div class="row m-2">
+                    <div class="col-md-2">
+                        <label class="form-label" for="Password">Пароль</label>
+                        <input type="password" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="Password" required>
+                    </div>
+                </div>
+    
+                <div class="col-md-2 text-center">
+                    <button class="btn btn-primary ml-4" type="submit">Авторизоваться</button>
+                </div>
+
+                @if (Model != null && !string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <div class="row m-2">
+                        <div class="col-md-2"> 
+                            <p class="text-danger">@Model.ErrorMessage</p>
+                        </div>
+                    </div>
+                }
+
+        </div>
+    </div>
+
+</form>
+
+<script>
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    var forms = document.getElementsByClassName('needs-validation');
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
